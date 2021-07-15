@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class PlayerRigidbodyMovement : MonoBehaviour
 {
+    public Rigidbody2D playerRigidbody;     // The player's rigidbody
+    public float moveSpeed = 10f;           // The player's move speed
+    public float maxSpeed = 2f;             // The player's max speed
 
-    public Rigidbody2D playerRigidbody;
-    public float moveSpeed = 10f;
-    public float maxSpeed = 2f;
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         ApplyInput();
@@ -19,10 +17,8 @@ public class PlayerRigidbodyMovement : MonoBehaviour
     void ApplyInput()
     {
         float xInput = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        //float yInput = Input.GetAxis("Vertical");
 
         Vector2 newForce = new Vector2(xInput, 0);
-
 
         playerRigidbody.AddRelativeForce(newForce, ForceMode2D.Impulse);
 
