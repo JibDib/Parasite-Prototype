@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Taken from tutorials:
+// Part 1: https://www.youtube.com/watch?v=FcnvwtyxLds&t=191s
+// Part 2: https://www.youtube.com/watch?v=k32g4ujzxP0
+// Part 3: https://www.youtube.com/watch?v=0uDInWEr_z4&t=132s
+
+
 public class RopeBridge : MonoBehaviour
 {
     public Transform StartPoint;
@@ -32,7 +38,7 @@ public class RopeBridge : MonoBehaviour
     {
         GrapplingScript grappleScript = GetComponent<GrapplingScript>();
 
-        ropeSegLen = (grappleScript.hookDistance / 10); // uses distance of hook from player to calculate rope segment length
+        ropeSegLen = (grappleScript.hookDistance / 10); // uses distance of hook from player to calculate rope segment length. Allows it to dynamically resize depending on length.
 
 
         if (Input.GetMouseButton(0) || grappleScript.isGrappled == true)

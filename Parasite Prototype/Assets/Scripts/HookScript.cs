@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class HookScript : MonoBehaviour
 {
-    //public GameObject player;
-    public GameObject enemy;
+    //public GameObject player;     // Could be used to make a system that lets the player swap hosts
+    public GameObject enemy;        // A variable to store the enemy hit
 
 
-    // When the hook collides with a grappleable surface, start the grapple function
 
 
-    private void Start()
+
+    /*private void Start()
     {
-      //  player = GetComponentInParent<GameObject>();
-    }
+        player = GetComponentInParent<GameObject>();
+    }*/
 
-    private void OnCollisionEnter2D(Collision2D collision)                              // Detects when the hook object collides with something
+    private void OnCollisionEnter2D(Collision2D collision)      // Detects when the hook object collides with something
     {
         GrapplingScript grappleScript = GetComponentInParent<GrapplingScript>();
 
-        if (collision.gameObject.layer == 9 && grappleScript.isGrappled == false && grappleScript.enemyStuck == false)                                             // If it collides with something on the 'Grapple' layer and you're not already grappled
+
+        // When the hook collides with a grappleable surface, start the grapple function
+        if (collision.gameObject.layer == 9 && grappleScript.isGrappled == false && grappleScript.enemyStuck == false)      // If it collides with something on the 'Grapple' layer and you're not already grappled
         {
-            grappleScript.ShootGrapple();                                               // Start the shoot grapple command;
+            grappleScript.ShootGrapple();                       // Start the shoot grapple command;
         }
 
+
+        // When the hook collides with an enemy, set the enemy stuck bool to true. This calls a function in the Grappling Script
         if (collision.gameObject.layer == 12 && grappleScript.isGrappled == false && grappleScript.enemyStuck == false)
         {
             enemy = collision.gameObject;

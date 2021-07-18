@@ -6,18 +6,18 @@ using UnityEngine;
 public class Balance : MonoBehaviour
 {
 
-    public float targetRoatation;
-    public Rigidbody2D rb;
-    public float force;
-    public GameObject burstPoint;
+    public float targetRoatation;       // The rotation the limbs will attempt to reach
+    public Rigidbody2D limb;            // The limb that should be trying to balance
+    public float force;                 // The force applied the limb applies to try and reach the target rotation
+    public GameObject burstPoint;       // The object containing the GrapplingScript
 
     void Update()
     {
-        GrapplingScript grappleScript = burstPoint.GetComponent<GrapplingScript>();
+        GrapplingScript grappleScript = burstPoint.GetComponent<GrapplingScript>();     // Get the grapple script so we can access its variables
 
-        if (grappleScript.isGrappled == false)
+        if (grappleScript.isGrappled == false)  // Runs if the player is not grappled
         {
-            rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRoatation, force * Time.fixedDeltaTime));
+            limb.MoveRotation(Mathf.LerpAngle(limb.rotation, targetRoatation, force * Time.fixedDeltaTime));        //Rotates the limbs towards the target rotation at a rate of force * time
         }
 
     }
